@@ -1,17 +1,22 @@
-import { useState } from 'react'
-import NavBar from './components/NavBar/NavBar'
-import ItemListContainer from './components/ItemListContainer/ItemListContainer';
-
+import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer"
+import ItemListContainer from "./components/ItemListContainer/ItemListContainer"
+import NavBar from "./components/NavBar/NavBar"
+import {BrowserRouter, Routes,Route} from "react-router-dom"
+//import './App.css'
 
 function App() {
-  const [cartCount,setCartCount] = useState(5)
 
   return (
-    <>
-    <NavBar cartCount= {cartCount} tittle="Tu Mejor Lista"/>
-    <ItemListContainer greetings= "Bienvenido a Tu Mejor Lista de Precios Apps"/>
-    </>
-  );
+    <BrowserRouter>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<ItemListContainer greetings={"Lista de Productos"}/>}></Route>
+        <Route path="/category/:category" element={<ItemListContainer/>}></Route>
+        <Route path="/detail/:id" element={<ItemDetailContainer/>}></Route>
+      
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App
